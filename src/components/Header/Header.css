@@ -1,0 +1,14 @@
+.titleWrapper{
+display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title{
+font-size: 2rem;
+  color: white;
+  margin-top: 60px;
+}
+
+

@@ -1,0 +1,28 @@
+.InstructionsWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  width: 50%;
+  padding: 10px 10px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.singleInstruction {
+  color: #656565;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 30px;
+}
+
+.mainIcon {
+  margin: auto;
+  background-color: #373737;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  margin-bottom: 20px;
+}

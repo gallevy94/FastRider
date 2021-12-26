@@ -1,0 +1,50 @@
+.confirmClass {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.confirmationInfo {
+  background-color: #373737;
+  margin-top: 10px;
+  width: 80%;
+}
+
+.rideZoneName {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  justify-content: space-between;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.rideNameConfirmed {
+  text-align: center;
+  margin-top: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.returnTimeCodeInfo {
+  margin: 20px;
+}
+
+.returnheadling {
+  color: #656565;
+}
+.returnTimeConfirm {
+  color: white;
+  margin-top: 0px;
+}
+
+.codeHeadling {
+  color: #656565;
+}
+
+.code {
+  color: white;
+  margin-top: 0px;
+}
