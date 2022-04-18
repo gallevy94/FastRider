@@ -1,6 +1,6 @@
 # FastRider
 
-Front End React Website
+Front End React Website.
 
 Amusement park website, displays all available rides, return times, and how many tickets there are left for a specific ride.
 The user enters his #PIN number and selects the desired ride.
