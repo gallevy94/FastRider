@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./RidesGridSubmit.css";
 
-export function RidesGridSubmit({ setConData }) {
+export function RidesGridSubmit({ setConData, setUserName }) {
   const [rides, setRides] = useState([]); //rides we get from server
   const [userInput, setUserInput] = useState(""); //user input
   const [rideIdClick, setRideIdClick] = useState(0); //ride id from click
@@ -41,8 +41,7 @@ export function RidesGridSubmit({ setConData }) {
     let currentRideTime = changeToTimeOnly(rides.return_time);
     currentRideTime = currentRideTime.replace(":", "");
     const intRideTime = parseInt(currentRideTime);
-    console.log(currentRideTime);
-    console.log(intRideTime);
+
     if (rideIdClick === 0) {
       alert("Ride was not selected!");
     }
@@ -56,24 +55,27 @@ export function RidesGridSubmit({ setConData }) {
         "Sorry, we're sold out on this ride! Please pick a different ride."
       );
     }
-    if (!checkValidPin) {
-    } else {
-      postUserInput(); //calls post
-    }
+
+    const pin = generateBtn(); //generate a new pin for the post request
+    postUserInput(pin); //calls post
   };
 
   //sends post request
-  const postUserInput = () => {
+  const postUserInput = (pinNumber) => {
     axios
       .post(`http://fast-rider.herokuapp.com/api/v1/tickets`, {
-        pin: userInput,
+        pin: pinNumber,
         ride_id: rideIdClick,
         token: "433898df4a3e992b8411004109e4d574a90695e39e",
       })
       .then((res) => {
         setConData(res.data);
+        setUserName(userInput);
         res.data.return_time = changeToTimeOnly(res.data.return_time);
         navigate("Confirmation");
+      })
+      .catch((error) => {
+        console.log(error.response);
       });
   };
 
@@ -86,35 +88,21 @@ export function RidesGridSubmit({ setConData }) {
     return hour + ":" + min;
   };
 
-  //checks if the pin that was entered is valid
-  const checkValidPin = () => {
-    const pin = userInput;
-    const pinFirstNum = 0;
-    const pinSecondNum = 0;
-
-    if (!pin.startsWith("JN")) {
-      alert(`ERROR! Pin must start with 'JN'`);
-    }
-    if (pinFirstNum.includes() || pinSecondNum.includes()) {
-      alert(`ERROR! "JN-xxxx-xxxx-AA" 'x' Must only be numbers`);
-    }
-    if (pinFirstNum.lenght !== 4 || pinSecondNum.lenght !== 4) {
-      alert(`ERROR! "JN-xxxx-xxxx-AA" 'x' has to have 4 digits`);
-    }
+  const generateBtn = () => {
+    const pinFirstNum = Math.floor(1000 + Math.random() * 9000);
+    const pinSecondNum = Math.floor(1000 + Math.random() * 9000);
 
     const firstChar = calcNumToLetter(pinFirstNum);
     const secondChar = calcNumToLetter(pinSecondNum);
 
-    if (!pin.endsWith(firstChar + secondChar)) {
-      alert(`ERROR! Pin's ending is not valid`);
-    } else {
-      return true;
-    }
+    let newPin =
+      "JN-" + pinFirstNum + "-" + pinSecondNum + "-" + firstChar + secondChar;
+
+    return newPin;
   };
 
-  const calcNumToLetter = (string) => {
-    let str = string.split("");
-    let arr = str.map(Number);
+  const calcNumToLetter = (pinNum) => {
+    const arr = Array.from(String(pinNum), Number);
 
     let res = 0;
     let sum = 0;
@@ -133,9 +121,11 @@ export function RidesGridSubmit({ setConData }) {
         res += sum;
       }
     }
+
     res = (res % 26) + 65;
-    const final = String.fromCharCode(res);
-    console.log(final);
+    const pinChar = String.fromCharCode(res);
+
+    return pinChar;
   };
 
   return (
@@ -145,8 +135,8 @@ export function RidesGridSubmit({ setConData }) {
           className="input"
           onChange={onChangeInput}
           type="text"
-          placeholder="#PIN"
-        ></input>
+          placeholder="Enter Your Name"
+        />
         <button className="btn" onClick={submitUserInput}>
           SUBMIT
         </button>

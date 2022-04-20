@@ -30,6 +30,19 @@
   opacity: 0.7;
 }
 
+.generateBtn {
+  background-color: white;
+  color: #4c4c4b;
+  cursor: pointer;
+  padding: 0.2rem 1rem;
+  border: 0.5px solid #656565;
+  font-weight: bold;
+}
+
+.helpBtn:hover {
+  opacity: 0.7;
+}
+
 /* Rides Grid */
 .ridesWrapper {
   display: grid;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Ride.css";
 
 import TicketIcon from "../../assets/icons/grey-ticket.png";
@@ -13,19 +13,21 @@ export function Ride({
   rideName,
   returnTime,
   remTickets,
-}) {
-
-
+}) 
+{
   return (
-    <div className="rideWrapper" style={{ backgroundColor: id=== rideIdClick? zoneColor : "#373737"}} 
-    onClick={() =>onRidePress(id)} >
+    <div
+      className="rideWrapper"
+      style={{ backgroundColor: id === rideIdClick ? zoneColor : "#373737" }}
+      onClick={() => onRidePress(id)}
+    >
       <div
         className="zoneColor"
         style={{ backgroundColor: zoneColor, height: 5 }}
       />
       <div className="rideTitlesWrapper">
-      <h4 className="zoneName">{zoneName}</h4>
-      <div className="rideName">{rideName}</div>
+        <h4 className="zoneName">{zoneName}</h4>
+        <div className="rideName">{rideName}</div>
       </div>
       <div className="timeTicketWrapper">
         <div className="returnTimeWrapper">

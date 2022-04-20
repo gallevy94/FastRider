@@ -3,12 +3,13 @@ import "./ConfirmCard.css";
 
 import VIcon from "../../assets/icons/v-icon.png";
 
-export const ConfirmCard = ({ confData }) => {
+export const ConfirmCard = ({ confData, userName }) => {
   console.log(confData, "=========");
   return (
     <div className="confirmClass">
       <div className="singleInstruction">
         <img className="mainIcon" src={VIcon} alt="V-icon" />
+        <h2>Hey {userName}!</h2>
         <div>
           Thank you for using The Jungle™ FastRider ticket system - your access
           code is now ready!

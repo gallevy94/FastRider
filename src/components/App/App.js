@@ -7,9 +7,9 @@ import { RidesGridSubmit } from "../RidesGridSubmit/RidesGridSubmit";
 import { React, useState } from "react";
 import { ConfirmCard } from "../ConfirmCard/ConfirmCard";
 
-
 export const App = () => {
   const [confirmedData, setConfirmedData] = useState({});
+  const [userInput, setUserInput] = useState({});
 
   return (
     <div className="mainWrapper">
@@ -21,13 +21,18 @@ export const App = () => {
             element={
               <div>
                 <Instructions />
-                <RidesGridSubmit setConData={setConfirmedData} />
+                <RidesGridSubmit
+                  setConData={setConfirmedData}
+                  setUserName={setUserInput}
+                />
               </div>
             }
           />
           <Route
             path="/Confirmation"
-            element={<ConfirmCard confData={confirmedData} />}
+            element={
+              <ConfirmCard confData={confirmedData} userName={userInput} />
+            }
           ></Route>
         </Routes>
       </Router>
