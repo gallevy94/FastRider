@@ -9,6 +9,7 @@ After confirmation with get and post, we go to the "ConfirmCard" which shows the
 # Screenshots:
 
 ![](images/01.jpg)
-![](images/02.jpg)
-![](images/03.jpg)
 
+![](images/02.jpg)
+
+![](images/03.jpg)
